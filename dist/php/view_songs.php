@@ -5,13 +5,12 @@ $db = getDB();
 # Submit
 if (isset($_POST['submit'])) {
     $data = [
-        isset($_POST['artist']) ? $_POST['artist'] : null,
-        isset($_POST['album']) ? $_POST['album'] : null,
-        isset($_POST['song']) ? $_POST['song'] : null,
-        isset($_POST['link']) ? $_POST['link'] : null,
+        isset($_POST['artist']) ? $db->escape_string($_POST['artist']) : null,
+        isset($_POST['album']) ? $db->escape_string($_POST['album']) : null,
+        isset($_POST['song']) ? $db->escape_string($_POST['song']) : null,
+        isset($_POST['link']) ? $db->escape_string($_POST['link']) : null,
     ];
     if ($data[0] !== '') {
-        global $db;
         $query = "insert into sg_song_table (artist_name, album_name, song_name, link) values ('$data[0]', '$data[1]', '$data[2]', '$data[3]');";
         $insert = $db->query($query);
         if ($insert) {

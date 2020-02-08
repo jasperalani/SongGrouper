@@ -10,7 +10,7 @@ function links(){
 
 function getDB()
 {
-    $mysqli = new mysqli('127.0.0.1', 'root', '', 'sg_db', 3307);
+    $mysqli = new mysqli('localhost', 'id12522551_sg_db_admin', 'Z8@0HZA%bp9S', 'id12522551_sg_db');
     if ($mysqli->connect_errno) {
         echo "Error: Failed to make a MySQL connection, here is why: \n";
         echo $mysqli->connect_error;
