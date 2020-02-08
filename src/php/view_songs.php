@@ -57,7 +57,7 @@ if(isset($_GET['orderby'])){
             <label>Order by</label>
             <select id="order-by-select">
                 <?php
-                if(isset($_GET['orderby'])){
+                if(isset($orderby)){
                     $list = ['artist', 'album', 'song'];
                     foreach($list as $l){
                         $selected = '';

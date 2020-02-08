@@ -17,9 +17,9 @@ gulp.task('changed-all', function(){
         .pipe(changed(global_DISTRIBUTION))
         .pipe(gulp.dest(global_DISTRIBUTION));
 });
-gulp.task('watch-all', function(){
-    gulp.watch(global_SOURCE, gulp.series('changed-all'));
-});
+// gulp.task('watch-all', function(){
+//     gulp.watch(global_SOURCE, gulp.series('changed-all'));
+// });
 
 /* Sass */
 const sass_SOURCE = './src/sass/**/*';
@@ -61,3 +61,20 @@ gulp.task('changed-php', function(){
 gulp.task('watch-php', function(){
     gulp.watch(php_SOURCE, gulp.series('changed-php'));
 });
+const php_index_SOURCE = './src/index.php';
+gulp.task('copy-php-index', function(){
+    return gulp.src(php_index_SOURCE)
+        .pipe(gulp.dest(global_DISTRIBUTION));
+});
+gulp.task('watch-php-index', function(){
+    gulp.watch(php_index_SOURCE, gulp.series('copy-php-index'));
+});
+gulp.task('watch-all', function(){
+    watchAll();
+});
+function watchAll(){
+   gulp.watch(sass_SOURCE, gulp.series('copy-sass'));
+   gulp.watch(js_SOURCE, gulp.series('copy-js'));
+   gulp.watch(php_SOURCE, gulp.series('changed-php'));
+   gulp.watch(php_index_SOURCE, gulp.series('copy-php-index'));
+}
