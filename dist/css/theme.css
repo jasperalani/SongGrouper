@@ -23,13 +23,23 @@
     border-style: none none solid none;
     padding: 5px; }
 
-#song-view-wrapper #input-form * {
-  padding: 20px;
-  border: 2px lightgreen dotted; }
-  #song-view-wrapper #input-form *:focus {
-    outline: none;
-    border: 2px green dotted;
-    transition: 2s border ease; }
+#song-view-wrapper #input-form {
+  display: inline-flex;
+  margin: 0;
+  font-size: 1rem; }
+  #song-view-wrapper #input-form select {
+    margin-top: -34px; }
+  #song-view-wrapper #input-form input[type="text"], #song-view-wrapper #input-form select {
+    border: 2px lightgreen dotted; }
+  #song-view-wrapper #input-form .col-sm-3 {
+    margin: 0;
+    padding: 0; }
+  #song-view-wrapper #input-form * {
+    padding: 30px 40px; }
+    #song-view-wrapper #input-form *:focus {
+      outline: none;
+      border: 2px green dotted;
+      transition: 2s border ease; }
 
 #song-view-wrapper #input-form-button {
   width: 60%;

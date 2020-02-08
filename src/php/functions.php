@@ -4,6 +4,7 @@ function links()
 {
     ?>
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
     <script src="js/environment-min.js"></script>
     <link rel="stylesheet" href="css/theme.css">
     <?php

@@ -80,31 +80,65 @@ if(isset($_GET['orderby'])){
             <?php
             $songs_query = $db->query("select * from sg_song_table where deleted is null order by $orderby");
             if ($songs_query) {
-                while ($songs[] = $songs_query->fetch_row()) {
-                }
+                while ($songs[] = $songs_query->fetch_row()) {}
             }
             if ($songs[sizeof($songs) - 1] === null) {
                 unset($songs[sizeof($songs) - 1]);
             }
 
+            $class = 'class="copy"';
             foreach ($songs as $song) {
                 echo '<tr>';
-                echo "<td>$song[1]</td>";
-                echo "<td>$song[2]</td>";
-                echo "<td>$song[3]</td>";
-                echo "<td>$song[4]</td>";
+                echo "<td id='1' $class>$song[1]</td>";
+                echo "<td $class>$song[2]</td>";
+                echo "<td $class>$song[3]</td>";
+                echo "<td $class>$song[4]</td>";
                 echo "<td class='remove' data-song-id='$song[0]'>X</td>";
                 echo '</tr>';
             }
             ?>
         </table>
     </div>
-    <form id="input-form" method="post" action="">
-        <input type="text" name="artist" placeholder="Artist Name">
-        <input type="text" name="album" placeholder="Album Name">
-        <input type="text" name="song" placeholder="Song Name">
-        <input type="text" name="link" placeholder="Link">
-        <input id="input-form-button" type="submit" name="submit" value="Add">
+    <form id="input-form" class="row" method="post" action="">
+        <?php
+        $qartists = 'SELECT DISTINCT artist_name FROM sg_song_table';
+        $qalbums = 'SELECT DISTINCT album_name FROM sg_song_table';
+        $qsongs = 'SELECT DISTINCT song_name FROM sg_song_table';
+        $artists_ = $db->query($qartists);
+        $albums_ = $db->query($qalbums);
+        $songs_ = $db->query($qsongs);
+        while($artists[] = $artists_->fetch_row()[0]){}
+        while($albums[] = $albums_->fetch_row()){}
+        while($songs_select[] = $songs_->fetch_row()[0]){}
+        ?>
+        <div class="col-sm-3">
+            <input id="artist" type="text" name="artist" placeholder="Artist Name">
+            <?php  if(!empty($artists)){
+                echo '<select id="select-artist">';
+                foreach($artists as $artist){ echo "<option>$artist</option>"; }
+                echo '</select>';
+            } ?>
+        </div>
+        <div class="col-sm-3">
+            <input id="album" type="text" name="album" placeholder="Album Name">
+            <?php  if(!empty($albums)){
+                echo '<select id="select-album">';
+                foreach($albums as $album){ echo "<option>$album[0]</option>"; }
+                echo '</select>';
+            } ?>
+        </div>
+        <div class="col-sm-3">
+            <input id="song" type="text" name="song" placeholder="Song Name">
+            <?php  if(!empty($songs)){
+                echo '<select id="select-song">';
+                foreach($songs_select as $song){ echo "<option>$song</option>"; }
+                echo '</select>';
+            } ?>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" name="link" placeholder="Link">
+            <input id="input-form-button" type="submit" name="submit" value="Add">
+        </div>
     </form>
 </div>
 </body>
