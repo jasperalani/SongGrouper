@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,900&display=swap");
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 66px; }
+
+#song-view-wrapper #order-by {
+  position: absolute;
+  top: 127px;
+  left: 78px;
+  margin-top: 32px; }
+  #song-view-wrapper #order-by * {
+    margin: 0;
+    font-size: 1.2rem;
+    color: grey;
+    font-style: italic; }
+
+#song-view-wrapper #display-table {
+  margin: 10px 66px 66px 66px; }
+  #song-view-wrapper #display-table th {
+    font-weight: 900; }
+  #song-view-wrapper #display-table td {
+    border: 1px lightgrey;
+    border-style: none none solid none;
+    padding: 5px; }
+
+#song-view-wrapper #input-form * {
+  padding: 20px;
+  border: 2px lightgreen dotted; }
+  #song-view-wrapper #input-form *:focus {
+    outline: none;
+    border: 2px green dotted;
+    transition: 2s border ease; }
+
+#song-view-wrapper #input-form-button {
+  width: 60%;
+  margin: auto;
+  display: block; }
+  #song-view-wrapper #input-form-button:hover {
+    cursor: pointer;
+    border: 2px green dotted;
+    transition: 2s border ease; }
