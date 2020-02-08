@@ -1,8 +1,7 @@
 # Song table
-create table sg_db.sg_song_table
+create table sg_song_table
 (
     id          int auto_increment
-        constraint `PRIMARY`
         primary key,
     artist_name varchar(255)                         null,
     album_name  varchar(255)                         null,
@@ -13,9 +12,10 @@ create table sg_db.sg_song_table
 );
 
 # Meta table
-create table sg_db.sg_ext_meta_table
+create table sg_ext_meta_table
 (
-    id int auto_increment
-        constraint `PRIMARY`
-        primary key
+    id         int auto_increment
+        primary key,
+    meta_key   varchar(255) null,
+    meta_value varchar(255) null
 );
