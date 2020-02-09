@@ -48,6 +48,7 @@ if(isset($_GET['orderby'])){
 
 <html>
 <head>
+    <title>Songgr</title>
     <?php links() ?>
 </head>
 <body>
@@ -86,20 +87,19 @@ if(isset($_GET['orderby'])){
                 unset($songs[sizeof($songs) - 1]);
             }
 
-            $class = 'class="copy"';
             foreach ($songs as $song) {
                 echo '<tr>';
-                echo "<td id='1' $class>$song[1]</td>";
-                echo "<td $class>$song[2]</td>";
-                echo "<td $class>$song[3]</td>";
-                echo "<td $class>$song[4]</td>";
+                echo "<td id='$song[1]' class='copy'>$song[1]</td>";
+                echo "<td id='$song[2]' class='copy'>$song[2]</td>";
+                echo "<td id='$song[3]' class='copy'>$song[3]</td>";
+                echo "<td id='$song[4]'>$song[4]</td>";
                 echo "<td class='remove' data-song-id='$song[0]'>X</td>";
                 echo '</tr>';
             }
             ?>
         </table>
     </div>
-    <form id="input-form" class="row" method="post" action="">
+    <form id="input-form" class="row" method= "post" action="">
         <?php
         $qartists = 'SELECT DISTINCT artist_name FROM sg_song_table';
         $qalbums = 'SELECT DISTINCT album_name FROM sg_song_table';
