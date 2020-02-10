@@ -52,7 +52,60 @@ if(isset($_GET['orderby'])){
     <?php links() ?>
 </head>
 <body>
-<div id="song-view-wrapper">
+
+<div id="song-view-wrapper1">
+
+    <div class="box">
+        <ul class="directory-list">
+            <?php
+            $artists_ = $db->query("select distinct artist_name from sg_song_table");
+            while($artists[] = $artists_->fetch_row()[0]){}
+            foreach($artists as $akey => $artist){
+                if(!empty($artist)){
+                    # artist top level
+                    if($akey === 0){
+                        echo "<li><div class='first-of-list'><small>artist</small><p class='list-item'>$artist</p></div><ul>";
+                    }else{
+                        echo "<li><p class='list-item'>$artist</p><ul>";
+                    }
+                    $albums_ = $db->query("select distinct album_name from sg_song_table where artist_name = '$artist'");
+                    while($albums[] = $albums_->fetch_row()[0]){}
+                    foreach($albums as $alkey => $album){
+                        if(!empty($album)){
+                            # album top level
+                            if($akey === 0 && $alkey === 0){
+                                echo "<li><div class='first-of-list'><small>album</small><p class='list-item'>$album</p></div><ul>";
+                            }else{
+                                echo "<li><p class='list-item'>$album</p><ul>";
+                            }
+                            $songs_ = $db->query("select distinct song_name from sg_song_table where album_name = '$album'");
+                            while($songs[] = $songs_->fetch_row()[0]){}
+                            foreach($songs as $skey => $song){
+                                if(!empty($song)){
+                                    if($akey === 0 && $alkey === 0 && $skey === 0){
+                                        echo "<li><div class='first-of-list'><small>song</small><p class='list-item'>$song</p></div></li>";
+                                    }else{
+                                        echo "<li><p class='list-item'>$song</p></li>";
+                                    }
+                                }
+                            }
+                            $songs = [];
+                            echo "</ul></li>";
+                            # album bottom level
+                        }
+                    }
+                    $albums = [];
+                    echo "</ul></li>";
+                    # artist bottom level
+                }
+            }
+            ?>
+        </ul>
+    </div>
+
+</div>
+
+<div style="display:none;" id="song-view-wrapper">
     <div id="display">
         <div id="order-by">
             <label>Order by</label>
