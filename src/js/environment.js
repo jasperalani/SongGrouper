@@ -22,6 +22,12 @@ $(function () {
 
     $('div[style="text-align: right;position: fixed;z-index:9999999;bottom: 0;width: auto;right: 1%;cursor: pointer;line-height: 0;display:block !important;"]').hide();
 
+    $('.song-link').click(function () {
+        console.log('hi');
+        console.log($(this).attr("data-src"));
+       // header.location.replace($(this).attr("data-src"));
+    });
+
     // get all folders in our .directory-list
     var allFolders = $(".directory-list li > ul");
     allFolders.each(function () {

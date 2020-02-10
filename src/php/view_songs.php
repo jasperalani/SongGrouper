@@ -82,6 +82,9 @@ if(isset($_GET['orderby'])){
                             while($songs[] = $songs_->fetch_row()[0]){}
                             foreach($songs as $skey => $song){
                                 if(!empty($song)){
+                                    $link = $db->query("select link from sg_song_table where song_name = '$song'");
+                                    $link = $link->fetch_row()[0];
+                                    $song = "<button class='song-link' data-src='$link'>$song</button>";
                                     if($akey === 0 && $alkey === 0 && $skey === 0){
                                         echo "<li><div class='first-of-list'><small>song</small><p class='list-item'>$song</p></div></li>";
                                     }else{
